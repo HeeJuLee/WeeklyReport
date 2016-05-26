@@ -10,3 +10,31 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+target/
+bin/
+Thumbs.db
+.DS_Store
+.project
+.classpath
+.factorypath
+.springBeans
+ivy*.xml
+*.class
+*.tmp
+.settings/
+.gradle/
+**/ivy*.xml
+**/.gradle
+**/.classpath
+**/.project
+**/.settings
+**/.springBeans
+**/.externalToolBuilders
+**/classes
+**/bin
+**/target
+**/MANIFEST.MF
+**/logs
+**/null
+**/work
