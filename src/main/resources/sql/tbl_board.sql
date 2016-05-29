@@ -24,7 +24,7 @@ update tbl_board
 set title = '수정된 제목'
 where bno = 1;
 
-delete tbl_board
+delete from tbl_board
 where bno = 1;
 
 
