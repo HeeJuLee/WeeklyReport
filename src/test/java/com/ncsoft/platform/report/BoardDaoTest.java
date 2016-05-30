@@ -26,4 +26,25 @@ public class BoardDaoTest {
 		
 		dao.create(board);
 	}
+	
+	@Test
+	public void testRead() throws Exception {
+		Board board = dao.read(3);
+		System.out.println(board.getWriter());
+	}
+	
+	@Test
+	public void testUpdate() throws Exception {
+		Board board = new Board();
+		board.setBno(1);
+		board.setTitle("글 제목 수정");
+		board.setContent("내용 수정");
+		
+		dao.update(board);
+	}
+	
+	@Test
+	public void testDelete() throws Exception {
+		dao.delete(4);
+	}
 }

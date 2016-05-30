@@ -11,7 +11,7 @@
   </insert>
   
   <select id="read" resultType="com.ncsoft.platform.report.domain.Board">
-  	select title, content, writer, regdate, viewcnt;
+  	select title, content, writer, regdate, viewcnt
 	from tbl_board 
 	where bno = #{bno}
   </select>
