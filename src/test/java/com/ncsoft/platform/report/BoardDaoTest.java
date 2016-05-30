@@ -1,5 +1,7 @@
 package com.ncsoft.platform.report;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -46,5 +48,10 @@ public class BoardDaoTest {
 	@Test
 	public void testDelete() throws Exception {
 		dao.delete(4);
+	}
+	
+	@Test
+	public void testListAll() throws Exception {
+		List<Board> list = dao.listAll();
 	}
 }

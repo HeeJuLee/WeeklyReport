@@ -28,12 +28,10 @@
   </delete>
   
   <select id="listAll" resultType="com.ncsoft.platform.report.domain.Board">
-  	<![CDATA[
-  	select title, content, writer, regdate, viewcnt;
+  	select bno, title, content, writer, regdate, viewcnt
 	from tbl_board 
 	where bno > 0
 	order by bno desc, regdate desc
-	]]>
   </select>
   
   </mapper>
