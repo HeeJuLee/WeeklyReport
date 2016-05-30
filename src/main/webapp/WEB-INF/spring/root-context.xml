@@ -26,4 +26,5 @@
 	</bean>
 	
 	<context:component-scan base-package="com.ncsoft.platform.report.persistence"></context:component-scan>
+	<context:component-scan base-package="com.ncsoft.platform.report.service"></context:component-scan>
 </beans>
