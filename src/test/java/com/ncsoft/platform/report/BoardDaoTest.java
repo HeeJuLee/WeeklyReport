@@ -41,6 +41,7 @@ public class BoardDaoTest {
 		board.setBno(1);
 		board.setTitle("글 제목 수정");
 		board.setContent("내용 수정");
+		board.setWriter("작성자 수정");
 		
 		dao.update(board);
 	}

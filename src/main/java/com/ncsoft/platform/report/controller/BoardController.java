@@ -59,4 +59,23 @@ public class BoardController {
 
 		model.addAttribute(service.read(bno));	
 	}
+	
+	@RequestMapping(value="/modify", method=RequestMethod.GET)
+	public void modifyGET(int bno, Model model) throws Exception {
+		
+		logger.info("modify get ......");
+		
+		model.addAttribute(service.read(bno));
+	}
+	
+	@RequestMapping(value="/modify", method=RequestMethod.POST)
+	public String modifyPOST(Board board, RedirectAttributes attr) throws Exception {
+		
+		logger.info("modify post ......");
+		
+		service.modify(board);
+		attr.addFlashAttribute("msg", "SUCCESS");
+		
+		return "redirect:/board/listAll";
+	}
 }
