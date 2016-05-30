@@ -78,4 +78,15 @@ public class BoardController {
 		
 		return "redirect:/board/listAll";
 	}
+	
+	@RequestMapping(value="/remove", method=RequestMethod.POST)
+	public String read(@RequestParam("bno") int bno, RedirectAttributes attr) throws Exception {
+		
+		logger.info("delete ......");
+
+		service.remove(bno);
+		attr.addFlashAttribute("msg", "SUCCESS");
+		
+		return "redirect:/board/listAll";
+	}
 }
