@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.ncsoft.platform.report.domain.Board;
+import com.ncsoft.platform.report.domain.Criteria;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -40,6 +41,27 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public List<Board> listAll() throws Exception {
 		return session.selectList(namespace + ".listAll");
+	}
+
+	@Override
+	public List<Board> listPage(Integer page) throws Exception {
+		
+		if(page <= 0)
+			page = 1;
+		
+		int start = (page - 1) * 10;
+		
+		return session.selectList(namespace + ".listPage", start);
+	}
+
+	@Override
+	public List<Board> listCriteria(Criteria cri) throws Exception {
+		return session.selectList(namespace + ".listCriteria", cri);
+	}
+
+	@Override
+	public int countPaging() throws Exception {
+		return session.selectOne(namespace + ".countPaging");
 	}
 
 }

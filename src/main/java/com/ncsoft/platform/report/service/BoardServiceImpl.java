@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.ncsoft.platform.report.domain.Board;
+import com.ncsoft.platform.report.domain.Criteria;
 import com.ncsoft.platform.report.persistence.BoardDao;
 
 @Service
@@ -40,4 +41,13 @@ public class BoardServiceImpl implements BoardService {
 		return dao.listAll();
 	}
 
+	@Override
+	public List<Board> listCriteria(Criteria cri) throws Exception {
+		return dao.listCriteria(cri);
+	}
+
+	@Override
+	public int countPaging() throws Exception {
+		return dao.countPaging();
+	}
 }

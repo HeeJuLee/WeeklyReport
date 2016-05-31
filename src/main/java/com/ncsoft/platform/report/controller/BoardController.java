@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ncsoft.platform.report.domain.Board;
+import com.ncsoft.platform.report.domain.Criteria;
+import com.ncsoft.platform.report.domain.PageMaker;
 import com.ncsoft.platform.report.service.BoardService;
 
 @Controller
@@ -50,6 +52,26 @@ public class BoardController {
 		
 		logger.info("show all list ......");
 		model.addAttribute("list", service.listAll());
+	}
+	
+	@RequestMapping(value="/listCri", method=RequestMethod.GET)
+	public void listCriteria(Criteria cri, Model model) throws Exception {
+		
+		logger.info("show criteria list ......");
+		model.addAttribute("list", service.listCriteria(cri));
+	}
+	
+	@RequestMapping(value="/listPage", method=RequestMethod.GET)
+	public void listPage(Criteria cri, Model model) throws Exception {
+		
+		logger.info(cri.toString());
+		model.addAttribute("list", service.listCriteria(cri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.countPaging());
+		
+		model.addAttribute("pageMaker", pageMaker);
 	}
 	
 	@RequestMapping(value="/read", method=RequestMethod.GET)
