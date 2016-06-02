@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -82,10 +83,30 @@ public class BoardController {
 		model.addAttribute(service.read(bno));	
 	}
 	
+	@RequestMapping(value="/readPage", method=RequestMethod.GET)
+	public void readPage(@RequestParam("bno") int bno,
+			@ModelAttribute("cri") Criteria cri,
+			Model model) throws Exception {
+		
+		logger.info("readPage ......");
+
+		model.addAttribute(service.read(bno));	
+	}
+	
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
 	public void modifyGET(int bno, Model model) throws Exception {
 		
 		logger.info("modify get ......");
+		
+		model.addAttribute(service.read(bno));
+	}
+	
+	@RequestMapping(value="/modifyPage", method=RequestMethod.GET)
+	public void modifyPageGET(@RequestParam("bno") int bno,
+			@ModelAttribute("cri") Criteria cri,
+			Model model) throws Exception {
+		
+		logger.info("modifyPage get ......");
 		
 		model.addAttribute(service.read(bno));
 	}
@@ -101,14 +122,45 @@ public class BoardController {
 		return "redirect:/board/listAll";
 	}
 	
-	@RequestMapping(value="/remove", method=RequestMethod.POST)
-	public String read(@RequestParam("bno") int bno, RedirectAttributes attr) throws Exception {
+	@RequestMapping(value="/modifyPage", method=RequestMethod.POST)
+	public String modifyPagePOST(Board board,
+			Criteria cri,
+			RedirectAttributes attr) throws Exception {
 		
-		logger.info("delete ......");
+		logger.info("modifyPage post ......");
+		
+		service.modify(board);
+		
+		attr.addAttribute("page", cri.getPage());
+		attr.addAttribute("pagePerNum", cri.getPerPageNum());
+		attr.addFlashAttribute("msg", "SUCCESS");
+		
+		return "redirect:/board/listPage";
+	}
+	
+	@RequestMapping(value="/remove", method=RequestMethod.POST)
+	public String remove(@RequestParam("bno") int bno, RedirectAttributes attr) throws Exception {
+		
+		logger.info("remove ......");
 
 		service.remove(bno);
 		attr.addFlashAttribute("msg", "SUCCESS");
 		
 		return "redirect:/board/listAll";
+	}
+	
+	@RequestMapping(value="/removePage", method=RequestMethod.POST)
+	public String removePage(@RequestParam("bno") int bno,
+			Criteria cri,
+			RedirectAttributes attr) throws Exception {
+		
+		logger.info("removePage ......");
+
+		service.remove(bno);
+		attr.addAttribute("page", cri.getPage());
+		attr.addAttribute("perPageNum", cri.getPerPageNum());
+		attr.addFlashAttribute("msg", "SUCCESS");
+		
+		return "redirect:/board/listPage";
 	}
 }

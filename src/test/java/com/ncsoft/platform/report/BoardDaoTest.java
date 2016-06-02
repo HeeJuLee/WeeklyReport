@@ -39,7 +39,7 @@ public class BoardDaoTest {
 	
 	@Test
 	public void testRead() throws Exception {
-		Board board = dao.read(3);
+		Board board = dao.read(122867);
 		System.out.println(board.getWriter());
 	}
 	
