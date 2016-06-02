@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ncsoft.platform.report.domain.Board;
 import com.ncsoft.platform.report.domain.Criteria;
+import com.ncsoft.platform.report.domain.SearchCriteria;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -62,6 +63,16 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public int countPaging() throws Exception {
 		return session.selectOne(namespace + ".countPaging");
+	}
+
+	@Override
+	public List<Board> listSearch(SearchCriteria cri) throws Exception {
+		return session.selectList(namespace + ".listSearch", cri);
+	}
+
+	@Override
+	public int countSearching(SearchCriteria cri) throws Exception {
+		return session.selectOne(namespace + ".countSearching", cri);
 	}
 
 }

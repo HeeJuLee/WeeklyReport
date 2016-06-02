@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ncsoft.platform.report.domain.Board;
 import com.ncsoft.platform.report.domain.Criteria;
+import com.ncsoft.platform.report.domain.SearchCriteria;
 import com.ncsoft.platform.report.persistence.BoardDao;
 
 @Service
@@ -49,5 +50,15 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int countPaging() throws Exception {
 		return dao.countPaging();
+	}
+
+	@Override
+	public List<Board> listSearch(SearchCriteria cri) throws Exception {
+		return dao.listSearch(cri);
+	}
+
+	@Override
+	public int countSearching(SearchCriteria cri) throws Exception {
+		return dao.countSearching(cri);
 	}
 }

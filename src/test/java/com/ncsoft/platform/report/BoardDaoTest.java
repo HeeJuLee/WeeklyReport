@@ -16,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.ncsoft.platform.report.controller.BoardController;
 import com.ncsoft.platform.report.domain.Board;
 import com.ncsoft.platform.report.domain.Criteria;
+import com.ncsoft.platform.report.domain.SearchCriteria;
 import com.ncsoft.platform.report.persistence.BoardDao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -87,6 +88,23 @@ public class BoardDaoTest {
 		for(Board board: list) {
 			logger.info(board.getBno() + ":" + board.getTitle());
 		}
+	}
+	
+	@Test
+	public void testListSearch() throws Exception {
+		SearchCriteria cri = new SearchCriteria();
+		cri.setPage(10);
+		cri.setPerPageNum(10);
+		cri.setKeyword("제목");
+		cri.setSearchType("t");
+		
+		List<Board> list = dao.listSearch(cri);
+		
+		for(Board board: list) {
+			logger.info(board.getBno() + ":" + board.getTitle());
+		}
+		
+		logger.info("COUNT: " + dao.countSearching(cri));
 	}
 	
 	@Test

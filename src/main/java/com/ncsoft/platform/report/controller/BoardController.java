@@ -101,16 +101,6 @@ public class BoardController {
 		model.addAttribute(service.read(bno));
 	}
 	
-	@RequestMapping(value="/modifyPage", method=RequestMethod.GET)
-	public void modifyPageGET(@RequestParam("bno") int bno,
-			@ModelAttribute("cri") Criteria cri,
-			Model model) throws Exception {
-		
-		logger.info("modifyPage get ......");
-		
-		model.addAttribute(service.read(bno));
-	}
-	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modifyPOST(Board board, RedirectAttributes attr) throws Exception {
 		
@@ -120,6 +110,16 @@ public class BoardController {
 		attr.addFlashAttribute("msg", "SUCCESS");
 		
 		return "redirect:/board/listAll";
+	}
+	
+	@RequestMapping(value="/modifyPage", method=RequestMethod.GET)
+	public void modifyPageGET(@RequestParam("bno") int bno,
+			@ModelAttribute("cri") Criteria cri,
+			Model model) throws Exception {
+		
+		logger.info("modifyPage get ......");
+		
+		model.addAttribute(service.read(bno));
 	}
 	
 	@RequestMapping(value="/modifyPage", method=RequestMethod.POST)
