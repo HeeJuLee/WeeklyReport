@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.ncsoft.platform.report.mapper.BoardMapper">
+  <mapper namespace="com.ncsoft.platform.report.mapper.boardMapper">
   
   <insert id="create">
   	insert into tbl_board (title, content, writer)

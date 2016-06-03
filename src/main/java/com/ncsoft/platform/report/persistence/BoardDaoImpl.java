@@ -17,7 +17,7 @@ public class BoardDaoImpl implements BoardDao {
 	@Inject
 	private SqlSession session;
 	
-	private static String namespace = "com.ncsoft.platform.report.mapper.BoardMapper";
+	private static String namespace = "com.ncsoft.platform.report.mapper.boardMapper";
 	
 	@Override
 	public void create(Board board) throws Exception {
